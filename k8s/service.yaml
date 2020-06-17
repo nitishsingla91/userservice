@@ -7,5 +7,5 @@ spec:
   selector:
     app: user-deployment
   ports:
-  - port: 8100
-    targetPort: 8100
+  - port: 8778
+    targetPort: 8778

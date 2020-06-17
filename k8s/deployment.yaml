@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: user-deployment
-        image: docker.io/nsingla85/usertest
+        image: docker.io/nsingla85/usertest:v3
         ports:
-        - containerPort: 8100
+        - containerPort: 8778
