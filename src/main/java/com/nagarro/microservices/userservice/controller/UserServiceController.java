@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+import javax.annotation.concurrent.Immutable;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.common.collect.ImmutableList;
 import com.nagarro.microservices.userservice.Configuration;
 
 
@@ -35,9 +37,37 @@ public class UserServiceController {
 	
 	
 	@GetMapping("/test")
-	public String getOrderTest() {
+	public BankProducts getOrderTest() {
 		
-		return "POC - Devops - CI CD using Jenkins & OpenShift Phase-I";
+		BankProducts bankProducts = new BankProducts();
+		
+		FDRates fdRates = new FDRates();
+		fdRates.setInterestRate("0.45 % p.a.");
+		fdRates.setTerm("1.5 years");
+		fdRates.setCurrency("EUR");
+				
+		FDRates fdRates1 = new FDRates();
+		fdRates1.setInterestRate("0.50 % p.a.");
+		fdRates1.setTerm("2 years");
+		fdRates1.setCurrency("EUR");
+		
+		List<FDRates> fdRateList = ImmutableList.of(fdRates,fdRates1);
+		bankProducts.setFdRates(fdRateList);
+		
+		Loans loans = new Loans();
+		loans.setInterestRate("10.75 %");
+		loans.setLoanCategory("Personal Loan");
+		
+		List<Loans> loanList = ImmutableList.of(loans);
+		bankProducts.setLoans(loanList);
+		
+		Offers offer = new Offers();
+		offer.setTitle("No Processing fee on Car Loan");
+		offer.setDesc("Interest starts at 10.75%, Get discount on the processing fee for amounts above $10000.");
+		List<Offers> offersList = ImmutableList.of(offer);
+		bankProducts.setOffers(offersList);
+		
+		return bankProducts;
 	}
 
 	
