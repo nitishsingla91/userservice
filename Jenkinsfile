@@ -11,7 +11,7 @@ pipeline {
      BRANCH_NAME = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
      CLUSTER_NAME = "https://api.ca-central-1.starter.openshift-online.com:6443"
 	 PROJECT_DEV="devopspoc" 
-	 GITLAB_PROJECT_PATH="https://github.com/nitishsingla91/userservice.git"
+	 GITLAB_PROJECT_PATH="https://gitlab.com/nsingla85/userservice.git"
 	 OPENSHIFT_PROJECT_NAME="devopspoc"
 	 JAR="user-service-0.0.1-SNAPSHOT.jar"
 	 PORT='8110'
